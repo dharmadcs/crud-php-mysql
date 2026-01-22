@@ -35,38 +35,11 @@ Aplikasi web PHP modern untuk mengelola inventory produk multi-kategori dengan f
 
 ## 🚀 Quick Start
 
-### Menggunakan Docker (Recommended)
+#### Database Setup
 
-```bash
-# Clone repository
-git clone <repository-url>
-cd lab5
-
-# Jalankan dengan Docker Compose
-docker-compose up -d
-
-# Akses aplikasi
-open http://localhost:8080
+# Menggunakan terminal MySQL langsung
 ```
-
-### Manual Setup
-
-#### 1. Database Setup
-
-```bash
-# Import database menggunakan Docker
-docker exec -i lab5_mysql mysql -uroot -prootpassword db_penjualan < database.sql
-
-# Atau menggunakan terminal MySQL langsung
 mysql -u root -p db_penjualan < database.sql
-```
-
-#### 2. Web Server Setup
-
-**PHP Built-in Server** (Development):
-```bash
-cd /path/to/lab5
-php -S localhost:8080
 ```
 
 **Apache/Nginx** (Production):
@@ -74,26 +47,11 @@ php -S localhost:8080
 - Pastikan mod_rewrite aktif (untuk Apache)
 - Configure virtual host jika diperlukan
 
-#### 3. Environment Configuration
-
-Edit `config/database.php` jika perlu:
-
-```php
-// Untuk Docker
-private $host = "mysql";
-private $username = "root";
-private $password = "rootpassword";
-
-// Untuk local development
-private $host = "localhost";
-private $username = "root";
-private $password = "";
-```
 
 ## 📁 Project Structure
 
 ```
-lab5/
+crud-php-mysql/
 ├── 📁 assets/
 │   ├── style.css           # Modern CSS dengan gradient & animations
 │   └── script.js           # Interactive JavaScript features
@@ -107,8 +65,6 @@ lab5/
 │   └── delete.php          # Delete product with confirmation
 ├── 📁 uploads/             # Product image storage
 ├── 📁 database.sql      # Database schema & sample data
-├── 📁 docker-compose.yml   # Docker container orchestration
-├── 📁 Dockerfile          # PHP application container config
 ├── 📁 index.php           # Dashboard dengan analytics
 └── 📁 README.md           # This documentation
 ```
@@ -213,20 +169,6 @@ lab5/
 - Search performance dengan large dataset
 - Image upload dengan berbagai format/size
 
-## ❓ Troubleshooting
-
-### Database Connection Issues
-```bash
-# Check Docker containers
-docker ps
-
-# Check MySQL logs
-docker logs lab5_mysql
-
-# Manual database connection test
-docker exec -it lab5_mysql mysql -uroot -prootpassword db_penjualan
-```
-
 ### File Permission Issues
 ```bash
 # Fix upload directory permissions
@@ -250,11 +192,6 @@ chmod 644 uploads/*
 5. Update semua file path references
 6. Test semua functionality
 
-### Breaking Changes
-- Struktur tabel berubah dari `handphones`/`laptops` ke unified `products`
-- Icon menggunakan text abbreviation bukan emoji
-- Sorting dan filtering features baru
-
 ## 📈 Performance Optimization
 
 ### Database Optimization
@@ -271,29 +208,6 @@ chmod 644 uploads/*
 - **OPcache**: PHP opcode caching
 - **Compression**: Gzip compression untuk responses
 - **CDN**: Static assets delivery
-
-## 🤝 Contributing
-
-### Development Setup
-```bash
-# Fork repository
-# Clone your fork
-git clone https://github.com/your-username/lab5.git
-
-# Install dependencies (jika ada)
-composer install  # PHP dependencies
-npm install      # Node.js dependencies untuk build tools
-
-# Setup local environment
-cp .env.example .env
-# Configure database credentials
-
-# Run tests
-./vendor/bin/phpunit
-
-# Start development server
-docker-compose up
-```
 
 ### Code Standards
 - **PHP**: PSR-12 coding standards
